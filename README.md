@@ -209,5 +209,86 @@ int main() {
 
 
 
+
+
+
+perro hijuepta
+
+
+#include "colors.h"
+#include <iostream>
+#include <stack>
+
+using namespace std;
+
+class carta {
+
+public:
+  int tipo;
+  char color;
+  carta(int tipo, char color) {
+    this->tipo = tipo;
+    this->color = color;
+  }
+};
+
+class baraja {
+public:
+  stack<int> m;
+  int dar_carta() {
+
+    if (!m.empty()) {
+      int c = m.top();
+      m.pop();
+      return c;
+    }
+    return 0;
+  };
+};
+
+void mostrar(baraja mazo) {
+  while (!mazo.m.empty()) {
+    cout << mazo.m.top() << " ";
+    mazo.m.pop();
+  }
+  cout << endl;
+};
+
+class jugador {
+public:
+  int mano[9];
+  void obtenerCarta(baraja *mazo) {
+    int c = mazo->dar_carta();
+    mano[c]++;
+  }
+};
+
+int main() {
+
+  baraja B;
+  B.m.push(3);
+  B.m.push(5);
+  B.m.push(7);
+  B.m.push(9);
+
+  mostrar(B);
+  jugador j;
+
+  for (int i = 0; i < 10; i++) {
+    j.mano[i] = 0;
+  }
+
+  j.obtenerCarta(&B);
+
+  for (int i = 0; i < 10; i++) {
+    cout << j.mano[i] << " ";
+  }
+
+  return 0;
+}
+
+
+
+
 https://replit.com/join/ugwamkccxu-sebasch510
 
